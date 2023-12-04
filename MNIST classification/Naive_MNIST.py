@@ -194,10 +194,8 @@ test_losses = []
 for epoch in range(num_epochs):
     train_correct = 0
     train_total = 0
-    print('epoch = ', epoch)
     
     if cent_comm:
-        print('Cent')
         for i, (images, labels) in enumerate(mnist_train_centloader):
             image, label = images[0], labels[0]
 
@@ -216,7 +214,6 @@ for epoch in range(num_epochs):
             outputs = outputs.squeeze(1) 
 
             # Calculate loss
-#             print(outputs)
             loss_cent = nn.CrossEntropyLoss()(outputs, full_label_batch)  # Use class indices for CrossEntropyLoss
 
 #             # Applying proposed algorithm (Update model parameters)
@@ -234,7 +231,6 @@ for epoch in range(num_epochs):
             train_correct += (train_predicted == full_label_batch).sum().item()  # Compare with original labels
 
             average_train_loss = loss_cent.item()  # Get the loss value for this iteration
-#             print(train_correct)
             average_train_accuracy = 100 * train_correct / len(data_storage_cent)
             average_train_loss_values.append(average_train_loss)
             average_train_accuracy_values.append(average_train_accuracy)
@@ -259,7 +255,6 @@ for epoch in range(num_epochs):
             
     else:
         # Training loop for distributed dataset
-        print('Dist')
         loss = 0
         average_train_accuracy = 0
         for agent_id in range(num_agents):
@@ -316,7 +311,6 @@ for epoch in range(num_epochs):
 
         average_train_loss = loss
         average_train_accuracy = average_train_accuracy/num_agents
-        print(f"dist accuracy = {average_train_accuracy}")
 
         average_train_loss_values.append(average_train_loss)
         average_train_accuracy_values.append(average_train_accuracy)
@@ -348,13 +342,9 @@ for epoch in range(num_epochs):
     ## Testing using MNIST dataset
     criterion = nn.CrossEntropyLoss()
     test_accuracy, test_loss = test(global_model, test_datasetLoader, criterion)
-#     print(f'Test Accuracy: {test_accuracy}%')
-#     print(f'Test Loss: {test_loss}')
     test_accuracies.append(test_accuracy)
     test_losses.append(test_loss)
-        
-    print(f'Train Accuracy: {average_train_accuracy}%')
-    print(f'Train Loss: {average_train_loss}')    
+           
 
 
 # In[7]:
@@ -376,45 +366,8 @@ plt.legend()
 plt.grid()
 
 
-# In[8]:
 
 
-# Plot the loss and accuracy curves for different num_agents
-plt.figure(figsize=(12, 5))
-plt.plot(average_train_accuracy_values, label=f'Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy (%)')
-plt.legend()
-plt.grid()
-
-print(average_train_loss_values)
-
-
-# In[9]:
-
-
-# File path where you want to save the text file
-file_path = "/Users/shivanshutripathi/Desktop/Project matlab codes/Linear reg files/SOLA_MNIST_naive.txt"
-
-# Writing the list elements along with iteration number to a text file
-with open(file_path, 'w') as file:
-    for i, value in enumerate(test_accuracies, start=1):
-        file.write(f"{value},{i}\n")
-
-
-# In[10]:
-
-
-# File path where you want to save the text file
-file_path = "/Users/shivanshutripathi/Desktop/Project matlab codes/Linear reg files/SOLA_MNIST_loss_naive.txt"
-
-# Writing the list elements along with iteration number to a text file
-with open(file_path, 'w') as file:
-    for i, value in enumerate(test_losses, start=1):
-        file.write(f"{value},{i}\n")
-
-
-# In[ ]:
 
 
 
