@@ -5,7 +5,6 @@
 # @FileName : Naive_MNIST_5Ag.py# Simulation  setting: naive switching
 #The data is collected by 2 different sensor configurations- centralized and distributed configurations. Algorithm switches between centalized and distributed algorithm periodically with a time period of 10 epochs. 
 # In[1]:
-# In[1]:
 
 
 import torch
