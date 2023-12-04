@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 # @Time     : 11/20/23
-# @Author   : Shivanshu Tripathi, Darshan Gadginmath, Fabio Pasqualetti
-# @FileName : Naive_MNIST_5Ag.py# Simulation  setting: naive switching
 #The data is collected by 2 different sensor configurations- centralized and distributed configurations. Algorithm switches between centalized and distributed algorithm periodically with a time period of 10 epochs. 
 # In[1]:
 
