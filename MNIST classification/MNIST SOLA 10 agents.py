@@ -365,37 +365,6 @@ plt.legend()
 plt.grid()
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-# File path where you want to save the text file
-file_path = "/Users/shivanshutripathi/Desktop/Project matlab codes/Linear reg files/SOLA_MNIST_10.txt"
-
-# Writing the list elements along with iteration number to a text file
-with open(file_path, 'w') as file:
-    for i, value in enumerate(test_accuracies, start=1):
-        file.write(f"{value},{i}\n")
-
-
-# In[ ]:
-
-
-# File path where you want to save the text file
-file_path = "/Users/shivanshutripathi/Desktop/Project matlab codes/Linear reg files/SOLA_MNIST_loss_10.txt"
-
-# Writing the list elements along with iteration number to a text file
-with open(file_path, 'w') as file:
-    for i, value in enumerate(test_losses, start=1):
-        file.write(f"{value},{i}\n")
-
-
-# In[ ]:
 
 
 
